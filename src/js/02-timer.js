@@ -5,9 +5,6 @@ import Notiflix from 'notiflix';
 const dateSelector = document.querySelector('#datetime-picker');
 const BtnStart = document.querySelector('button');
 const counters = document.querySelectorAll('span');
-const countingField = document.querySelectorAll('.timer');
-// console.log(countingField);
-// countingField.style.displayStyle: flex;
 BtnStart.disabled = true;
 let timeDifference;
 
