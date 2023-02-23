@@ -5,21 +5,18 @@ import Notiflix from 'notiflix';
 const dateSelector = document.querySelector('#datetime-picker');
 const BtnStart = document.querySelector('button');
 const counters = document.querySelectorAll('span');
- 
-
-console.log(`secondCounter is: ${counters[6].textContent}`);
-console.log(counters[6].textContent);
-
+const countingField = document.querySelectorAll('.timer');
+// console.log(countingField);
+// countingField.style.displayStyle: flex;
 BtnStart.disabled = true;
- 
 let timeDifference;
+
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-     
     const currentDate = new Date();
     console.log(`current Time is: ${currentDate.getTime()}`);
     timeDifference = selectedDates[0].getTime() - currentDate.getTime();
@@ -46,7 +43,6 @@ BtnStart.addEventListener('click', () => {
     counters[2].textContent = addLeadingZero(convertMs(timeDifference).hours);
     counters[0].textContent = addLeadingZero(convertMs(timeDifference).days);
   }, 1000);
-
   BtnStart.disabled = true;
 });
 
@@ -72,5 +68,3 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
- 
