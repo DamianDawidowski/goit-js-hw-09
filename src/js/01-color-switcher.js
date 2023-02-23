@@ -3,24 +3,27 @@ function getRandomHexColor() {
 }
 
 const Body = document.querySelector('body');
-let BtnStart = document.querySelector('button');
+const BtnStart = document.querySelector('button');
 const BtnStop = BtnStart.nextElementSibling;
+ let timerId = null;
+BtnStop.disabled = true; 
+
+BtnStart.addEventListener('click', () => {
+  timerId = setInterval(() => {
+    changeBodyColor();
+  }, 1000);
+    BtnStart.disabled = true; 
+    BtnStop.disabled = false; 
+});
+
+BtnStop.addEventListener('click', () => {
+  clearInterval(timerId);
+    BtnStart.disabled = false; 
+    BtnStop.disabled = true; 
+});
  
-// console.log(BtnStop);
-
-BtnStart.addEventListener('click', setInterval(changeBodyColor, 1000));
-
-
-
-
-
-
-BtnStop.addEventListener('click', clearTimeout(id););
-
 function changeBodyColor() {
       let newColor = getRandomHexColor();
       Body.style.backgroundColor = newColor;
 }
-
-
-clearTimeout(id);
+ 
