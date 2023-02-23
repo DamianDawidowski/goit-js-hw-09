@@ -27,3 +27,10 @@ function changeBodyColor() {
       Body.style.backgroundColor = newColor;
 }
  
+
+
+
+XXXXXXXXXXX
+
+
+
