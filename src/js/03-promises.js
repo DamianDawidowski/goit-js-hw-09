@@ -2,9 +2,7 @@ import Notiflix from 'notiflix';
 
 const Btn = document.querySelector('button');
 const form = document.querySelector('form');
- const inputs = document.querySelectorAll('input');
-
-form.setAttribute(title, " ");
+const inputs = document.querySelectorAll('input');
 
 function createPromise(position, firstDelay) {
   return new Promise((resolve, reject) => {
