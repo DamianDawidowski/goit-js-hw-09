@@ -16,7 +16,7 @@ form.addEventListener('submit', createAllPromises);
 function createAllPromises(event) {
   event.preventDefault;
   let firstDelay = inputs[0].value;
-  let delayStep = inputs[1].value;
+  let delayStep = parseFloat(inputs[1].value);
   let promisedAmount = inputs[2].value;
   // console.log(
   //   firstDelay
@@ -26,8 +26,8 @@ function createAllPromises(event) {
   for (let position = 1; position <= promisedAmount; position++) {
     setTimeout(() => {
       console.log('done');
-      createPromise(position, delayStep)
-    }, 46);
+      createPromise(position, delayStep);
+    }, delayStep);
     
     delayStep = parseFloat(delayStep) + parseFloat(delayStep);
   }
