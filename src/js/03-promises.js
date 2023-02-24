@@ -18,7 +18,7 @@ form.addEventListener('submit', createAllPromises);
 function createAllPromises(event)  {
   event.preventDefault;
   console.log(`firstDelay: ${firstDelay.value},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
-  console.log(`firstDelay: ${firstDelay.value},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
+  // console.log(`firstDelay: ${firstDelay.value},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
   for (let i = 1; i <= promisedAmount; i++) {
     createPromise(i, delayStep);
     console.log(createPromise);
