@@ -4,140 +4,92 @@ const form = document.querySelector('form');
 const inputs = document.querySelectorAll('input');
 
 let position = 0;
-  // firstDelay.value = 1000;
-// console.log(firstDelay);
-
+ 
 
 form.addEventListener('submit', createAllPromises);
-
-
-
+ 
 
 function createAllPromises(event) {
   event.preventDefault;
   let firstDelay = inputs[0].value;
   let delayStep = parseFloat(inputs[1].value);
   let promisedAmount = inputs[2].value;
+  let PromiseDelay = delayStep;
   // console.log(
   //   firstDelay
   // );
   console.log(`firstDelay: ${firstDelay},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
   console.log(`firstDelay: ${firstDelay},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
   for (let position = 1; position <= promisedAmount; position++) {
-    setTimeout(() => {
-      console.log('done');
-      createPromise(position, delayStep);
-    }, delayStep);
-    
-    delayStep = parseFloat(delayStep) + parseFloat(delayStep);
-  }
 
+    // createPromise(position, delayStep);
+    createPromise(position, PromiseDelay)
+      .then(({ position, PromiseDelay }) => {
+        console.log(`✅ Fulfilled promise ${position} in ${PromiseDelay}ms`);
+      })
+      .catch(({ position, PromiseDelay }) => {
+        console.log(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
+      });
 
-
-  // function createPromise(position, delay) {
-  //   // setTimeout(() => {
-  //     const shouldResolve = Math.random() > 0.3;
-  //     if (shouldResolve) {
-  //       console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  //       // Fulfill
-  //     } else {
-  //       console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  //       // Reject
-  //     }
-  //   // }, 1000);
   
-  // };
-
-function createPromise(position, delayStep) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-     console.log(`✅ Fulfilled promise ${position} in ${delayStep}ms`);
-    // Fulfill
-  } else {
-    console.log(`❌ Rejected promise ${position} in ${delayStep}ms`);
-    // Reject
+    // console.log(`position ${position}`);
+    PromiseDelay += parseFloat(delayStep);
+    console.log(PromiseDelay);
   }
 }
 
-// createPromise(position, delayStep)
-//   .then(({ position, delayStep }) => {
-//     console.log(`✅ Fulfilled promise ${position} in ${delayStep}ms`);
-//   })
-// //   .catch(({ position, delayStep }) => {
-// //     console.log(`❌ Rejected promise ${position} in ${delayStep}ms`);
-// //   });
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-// function createPromise(position, delay) {
-//   const shouldResolve = Math.random() > 0.3;
-//   if (shouldResolve) {
-//      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-//     // Fulfill
-//   } else {
-//      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-//     // Reject
-//   }
-// }
  
 
+  function createPromise(position, PromiseDelay) {
+   return new Promise((resolve, reject) => {
+   
+    setTimeout(() => {
+      const shouldResolve = Math.random() > 0.3;
+      if (shouldResolve) {
+        resolve(position, PromiseDelay);
+        // console.log(`✅ Fulfilled promise ${position} in ${PromiseDelay}ms`);
+        // Fulfill
+      } else {
+        // console.log(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
+        reject(position, PromiseDelay);
+      }
+    }, PromiseDelay);
+     console.log(PromiseDelay);
+ 
+  })
+} ;
+ 
+// // XXXXXXXXXXXXXXXXXXXXXXX
 
-
-
-
-
-
-
-
-
-
-// XXXXXXXXXXXXXXX
-
-
-// const isSuccess = false;
+// // Change value of isSuccess variable to call resolve or reject
+// const isSuccess = true;
 
 // const promise = new Promise((resolve, reject) => {
 //   setTimeout(() => {
 //     if (isSuccess) {
-//       resolve('Success! Value passed to resolve function');
+//       resolve("Success! Value passed to resolve function");
 //     } else {
-//       reject('Error! Error passed to reject function');
+//       reject("Error! Error passed to reject function");
 //     }
 //   }, 2000);
 // });
 
 // // Will run first
-// console.log('Before promise.then()');
+// console.log("Before promise.then()");
 
 // // Registering promise callbacks
 // promise.then(
 //   // onResolve will run third or not at all
 //   value => {
-//     console.log('onResolve call inside promise.then()');
+//     console.log("onResolve call inside promise.then()");
 //     console.log(value); // "Success! Value passed to resolve function"
 //   },
 //   // onReject will run third or not at all
 //   error => {
-//     console.log('onReject call inside promise.then()');
+//     console.log("onReject call inside promise.then()");
 //     console.log(error); // "Error! Error passed to reject function"
 //   }
 // );
 
 // // Will run second
-// console.log('After promise.then()');
+// console.log("After promise.then()");
