@@ -23,42 +23,50 @@ function createAllPromises(event) {
   for (let position = 1; position <= promisedAmount; position++) {
 
     // createPromise(position, delayStep);
-    createPromise(position, PromiseDelay)
-      .then(({ position, PromiseDelay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${PromiseDelay}ms`);
-      })
-      .catch(({ position, PromiseDelay }) => {
-        console.log(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
-      });
+    createPromise(position, PromiseDelay).then(onSuccess).catch(onError);
 
   
     // console.log(`position ${position}`);
     PromiseDelay += parseFloat(delayStep);
-    console.log(PromiseDelay);
+   
   }
 }
 
  
 
   function createPromise(position, PromiseDelay) {
-   return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
    
-    setTimeout(() => {
-      const shouldResolve = Math.random() > 0.3;
-      if (shouldResolve) {
-        resolve(position, PromiseDelay);
-        // console.log(`✅ Fulfilled promise ${position} in ${PromiseDelay}ms`);
-        // Fulfill
-      } else {
-        // console.log(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
-        reject(position, PromiseDelay);
-      }
-    }, PromiseDelay);
-     console.log(PromiseDelay);
+      setTimeout(() => {
+        console.log(PromiseDelay);
+        const shouldResolve = Math.random() > 0.3;
+        if (shouldResolve) {
+          resolve({ position, PromiseDelay });
+          // console.log(`✅ Fulfilled promise ${position} in ${PromiseDelay}ms`);
+          // Fulfill
+        } else {
+          // console.log(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
+          reject({ position, PromiseDelay });
+        }
+      }, PromiseDelay);
+      console.log(PromiseDelay);
  
-  })
+    });
 } ;
  
+function onError({ position, PromiseDelay }) {
+  Notify.failure(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
+}
+
+function onSuccess({ position, PromiseDelay }) {
+  Notify.success(`✅ Fulfilled promise ${position} in ${PromiseDelay}ms`);
+}
+
+
+
+
+
+
 // // XXXXXXXXXXXXXXXXXXXXXXX
 
 // // Change value of isSuccess variable to call resolve or reject
