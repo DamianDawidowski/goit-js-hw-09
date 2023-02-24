@@ -18,8 +18,8 @@ function createAllPromises(event) {
   // console.log(
   //   firstDelay
   // );
-  console.log(`firstDelay: ${firstDelay},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
-  console.log(`firstDelay: ${firstDelay},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
+  // console.log(`firstDelay: ${firstDelay},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
+  // console.log(`firstDelay: ${firstDelay},delayStep: ${delayStep},promisedAmount: ${promisedAmount}`);
   for (let position = 1; position <= promisedAmount; position++) {
 
     // createPromise(position, delayStep);
@@ -38,7 +38,7 @@ function createAllPromises(event) {
     return new Promise((resolve, reject) => {
    
       setTimeout(() => {
-        console.log(PromiseDelay);
+        console.log('TimedOUT!!');
         const shouldResolve = Math.random() > 0.3;
         if (shouldResolve) {
           resolve({ position, PromiseDelay });
@@ -48,8 +48,8 @@ function createAllPromises(event) {
           // console.log(`❌ Rejected promise ${position} in ${PromiseDelay}ms`);
           reject({ position, PromiseDelay });
         }
-      }, PromiseDelay);
-      console.log(PromiseDelay);
+      }, 1000);
+      // console.log(PromiseDelay);
  
     });
 } ;
@@ -79,7 +79,7 @@ function onSuccess({ position, PromiseDelay }) {
 //     } else {
 //       reject("Error! Error passed to reject function");
 //     }
-//   }, 2000);
+//   }, 4000);
 // });
 
 // // Will run first
